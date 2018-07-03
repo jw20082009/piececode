@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fl_scroll_input"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/sg_img_beauty_1"
+        />
+
+    <com.eyedog.piececode.textSticky.TextStickyPanel
+        android:id="@+id/text_sticky_panel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></com.eyedog.piececode.textSticky.TextStickyPanel>
+
+    <Button
+        android:id="@+id/btn_editmode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="编辑"
+        />
+
+</FrameLayout>

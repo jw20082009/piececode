@@ -16,3 +16,5 @@
 .idea/gradle.xml
 app/src/test/java/com/eyedog/piececode/ExampleUnitTest.java
 app/src/androidTest/java/com/eyedog/piececode/ExampleInstrumentedTest.java
+.idea/checkstyleidea-libs/readme.txt
+.idea/checkstyle-idea.xml

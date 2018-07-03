@@ -1,127 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:paddingTop="@dimen/height_status_bar"
+    android:background="@android:color/darker_gray">
 
-    <com.eyedog.piececode.widgets.TransitionView xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/transitionview"
+    <ListView
+        android:id="@+id/category_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/black"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent"></ListView>
 
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/drawable_rect_red_radius20"
-            android:gravity="center"
-            android:onClick="expand"
-            android:text="点击可以放大和缩小!"
-            android:textColor="@android:color/white"
-            android:textSize="16dp" />
-
-        <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_gravity="center"
-            android:background="@drawable/drawable_rect_red_radius5"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="invisible">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:onClick="subClick"
-                android:text="死了浪费实力的历史"
-                android:textColor="@android:color/white"
-                android:textSize="15dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/white" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:onClick="subClick"
-                android:text="都色色店铺的东欧"
-                android:textColor="@android:color/white"
-                android:textSize="15dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/white" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:onClick="subClick"
-                android:text="是松儿偶滴"
-                android:textColor="@android:color/white"
-                android:textSize="15dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/white" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:onClick="subClick"
-                android:text="去吧打开利用下"
-                android:textColor="@android:color/white"
-                android:textSize="15dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/white" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:onClick="subClick"
-                android:text="刚下了额去下"
-                android:textColor="@android:color/white"
-                android:textSize="15dp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/white" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center"
-                android:onClick="subClick"
-                android:text="怕去下人是啊发看"
-                android:textColor="@android:color/white"
-                android:textSize="15dp" />
-
-        </LinearLayout>
-
-    </com.eyedog.piececode.widgets.TransitionView>
-
-    <TextView
-        android:id="@+id/tips"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:background="@android:color/holo_red_dark"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="16dp"
-        android:textStyle="bold" />
-</FrameLayout>
+</RelativeLayout>

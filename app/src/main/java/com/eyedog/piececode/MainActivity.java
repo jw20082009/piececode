@@ -1,56 +1,70 @@
 package com.eyedog.piececode;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
-import com.eyedog.piececode.widgets.TransitionView;
+import com.eyedog.piececode.adapters.MainAdapter;
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
+import java.util.ArrayList;
+import java.util.HashMap;
 
-    TransitionView transitionView;
-    TextView tips;
+public class MainActivity extends AppCompatActivity {
+
+    private ListView list;
+
+    private ArrayList<HashMap<String, String>> pageDatas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        transitionView = findViewById(R.id.transitionview);
-        transitionView.setOnTouchListener(this);
-        tips = findViewById(R.id.tips);
+        initList();
     }
 
-    boolean isExpand = false;
-
-    public void expand(View view) {
-        if (!isExpand) {
-            transitionView.scale01();
-            isExpand = true;
-        }
+    private void initList() {
+        pageDatas = getListDatas();
+        list = (ListView) findViewById(R.id.category_list);
+        MainAdapter adapter = new MainAdapter(this, pageDatas);
+        list.setAdapter(adapter);
+        list.setOnItemClickListener(itemListener);
     }
 
-    @Override
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (motionEvent.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                if (isExpand) {
-                    transitionView.scale10();
-                    isExpand = false;
+    private ArrayList<HashMap<String, String>> getListDatas() {
+        ArrayList<HashMap<String, String>> datas = new ArrayList<>();
+        datas.add(getPageMap("TransitionActivity", "控件切换动画"));
+        datas.add(getPageMap("TextStickerActivity","文字编辑与粘贴"));
+        return datas;
+    }
+
+    private HashMap<String, String> getPageMap(String key, String title) {
+        HashMap<String, String> page = new HashMap<>();
+        page.put("key", key);
+        page.put("title", title);
+        return page;
+    }
+
+    private AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            HashMap<String, String> page = pageDatas.get(position);
+            new Thread("") {
+                @Override
+                public void run() {
+                    super.run();
+
                 }
-                break;
+            }.start();
+            try {
+                Class clazz = Class.forName("com.eyedog.piececode." + page.get("key"));
+                Intent intent = new Intent(MainActivity.this, clazz);
+                startActivity(intent);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-        return false;
-    }
-
-    public void subClick(View view) {
-        if (view instanceof TextView) {
-            TextView textView = (TextView) view;
-            String text = textView.getText().toString();
-            Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
-            tips.setText(text);
-        }
-    }
+    };
 }

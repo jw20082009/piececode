@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.eyedog.piececode.textSticky.OutlineContainer
+        android:id="@+id/et_text_input_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        >
+
+        <EditText
+            android:id="@+id/et_text_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@null"
+            android:gravity="center"
+            android:minHeight="20dp"
+            android:minWidth="10dp"
+            android:textColor="@android:color/white"
+            android:textCursorDrawable="@drawable/shape_media_preview_cursor"
+            android:textSize="30dp"
+            android:visibility="invisible"
+            />
+
+    </com.eyedog.piececode.textSticky.OutlineContainer>
+
+
+    <LinearLayout
+        android:id="@+id/ll_text_input_bar"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="4dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="4"
+            />
+
+        <com.eyedog.piececode.textSticky.switcher.FontSwitcher
+            android:id="@+id/font_switcher"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="75"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="4"
+            />
+
+        <com.eyedog.piececode.textSticky.switcher.BorderSwitcher
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="64"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="4"
+            />
+
+        <com.eyedog.piececode.textSticky.switcher.AlignSwitcher
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="64"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="4"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="152"
+            android:background="@drawable/shape_04black_radius8"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            >
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_white_oval"
+                    />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                >
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_whiteborder_blacksolid_oval"
+                    />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                >
+
+                <com.eyedog.piececode.textSticky.switcher.ColorSwitcher
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="4"
+            />
+    </LinearLayout>
+</merge>
