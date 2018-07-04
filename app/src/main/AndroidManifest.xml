@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".TextStickerActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustNothing|stateHidden"></activity>
     </application>
 
 </manifest>

@@ -4,13 +4,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import com.eyedog.piececode.textSticky.TextStickyPanel;
+import com.eyedog.piececode.textSticky.StickyTextPanel;
 
 public class TextStickerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button mEdit;
 
-    private TextStickyPanel mPanel;
+    private StickyTextPanel mPanel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

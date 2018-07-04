@@ -3,6 +3,7 @@
     android:id="@+id/fl_scroll_input"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_red_dark"
     >
 
     <ImageView
@@ -12,11 +13,11 @@
         android:src="@drawable/sg_img_beauty_1"
         />
 
-    <com.eyedog.piececode.textSticky.TextStickyPanel
+    <com.eyedog.piececode.textSticky.StickyTextPanel
         android:id="@+id/text_sticky_panel"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        ></com.eyedog.piececode.textSticky.TextStickyPanel>
+        ></com.eyedog.piececode.textSticky.StickyTextPanel>
 
     <Button
         android:id="@+id/btn_editmode"

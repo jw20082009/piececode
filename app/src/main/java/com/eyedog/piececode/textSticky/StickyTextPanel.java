@@ -5,27 +5,29 @@ import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import com.eyedog.piececode.R;
+import com.eyedog.piececode.textSticky.switcher.AlignSwitcher;
+import com.eyedog.piececode.textSticky.switcher.BorderSwitcher;
 import com.eyedog.piececode.textSticky.switcher.FontSwitcher;
 import com.eyedog.piececode.textSticky.switcher.ISwitchListener;
+import com.eyedog.piececode.textSticky.textRes.AlignEnum;
+import com.eyedog.piececode.textSticky.textRes.BorderEnum;
 import com.eyedog.piececode.textSticky.textRes.FontEnum;
 import com.eyedog.piececode.utils.SoftKeyboardHelper;
 
 /**
  * created by jw200 at 2018/7/3 18:16
  **/
-public class TextStickyPanel extends FrameLayout
+public class StickyTextPanel extends FrameLayout
     implements SoftKeyboardHelper.OnKeyboardStateListener {
 
-    private OutlineContainer mTextInputContainer;
-
-    private EditText mTextInput;
+    private StickyEditText mTextInput;
 
     private LinearLayout mTextInputBar;
 
@@ -33,18 +35,22 @@ public class TextStickyPanel extends FrameLayout
 
     private FontSwitcher mFontSwitcher;
 
-    public TextStickyPanel(@NonNull Context context) {
+    private BorderSwitcher mBorderSwitcher;
+
+    private AlignSwitcher mAlignSwitcher;
+
+    public StickyTextPanel(@NonNull Context context) {
         super(context);
         init();
     }
 
-    public TextStickyPanel(@NonNull Context context,
+    public StickyTextPanel(@NonNull Context context,
         @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TextStickyPanel(@NonNull Context context, @Nullable AttributeSet attrs,
+    public StickyTextPanel(@NonNull Context context, @Nullable AttributeSet attrs,
         int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
@@ -52,11 +58,14 @@ public class TextStickyPanel extends FrameLayout
 
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.eye_text_sticky_panel, this);
-        mTextInputContainer = findViewById(R.id.et_text_input_container);
         mTextInput = findViewById(R.id.et_text_input);
         mTextInputBar = findViewById(R.id.ll_text_input_bar);
         mFontSwitcher = findViewById(R.id.font_switcher);
-        mFontSwitcher.setSwitchListener(fontListener);
+        mFontSwitcher.setSwitchListener(mFontListener);
+        mBorderSwitcher = findViewById(R.id.border_switcher);
+        mBorderSwitcher.setSwitchListener(mBorderListener);
+        mAlignSwitcher = findViewById(R.id.align_switcher);
+        mAlignSwitcher.setSwitchListener(mAlignListener);
         mTextInput.setTypeface(
             Typeface.createFromAsset(getContext().getAssets(), mFontSwitcher.getCurrentRes().res));
         mKeyBoardHelper = new SoftKeyboardHelper(getContext(), this);
@@ -66,10 +75,10 @@ public class TextStickyPanel extends FrameLayout
      * 开始编辑api
      */
     public void edit() {
-        mTextInputContainer.setVisibility(View.VISIBLE);
+        mTextInput.setVisibility(View.VISIBLE);
         mTextInput.setSelection(0);
         mTextInput.requestFocus();
-        mTextInputContainer.setAlpha(0f);
+        mTextInput.setAlpha(0f);
         showSoftInput(mTextInput);
     }
 
@@ -108,15 +117,15 @@ public class TextStickyPanel extends FrameLayout
                 mTextInputBar.setVisibility(View.VISIBLE);
                 mTextInputBar.setAlpha(0f);
                 mTextInputBar.animate().alpha(1.0f).setListener(null);
-                mTextInputContainer.setTranslationY(
+                mTextInput.setTranslationY(
                     (getHeight() - height) / 2.0f
-                        - mTextInputContainer.getHeight() / 2.0f);
-                mTextInputContainer.setVisibility(View.VISIBLE);
-                mTextInputContainer.setAlpha(1.0f);
+                        - mTextInput.getHeight() / 2.0f);
+                mTextInput.setVisibility(View.VISIBLE);
+                mTextInput.setAlpha(1.0f);
             } else {
-                mTextInputContainer.setVisibility(View.GONE);
-                mTextInputContainer.setTranslationY(0);
-                mTextInputContainer.setAlpha(0f);
+                mTextInput.setVisibility(View.GONE);
+                mTextInput.setTranslationY(0);
+                mTextInput.setAlpha(0f);
                 mTextInputBar.setTranslationY(0);
                 mTextInputBar.setAlpha(1.0f);
                 mTextInputBar.setVisibility(View.GONE);
@@ -125,12 +134,36 @@ public class TextStickyPanel extends FrameLayout
         }
     }
 
-    ISwitchListener<FontEnum> fontListener = new ISwitchListener<FontEnum>() {
+    ISwitchListener<FontEnum> mFontListener = new ISwitchListener<FontEnum>() {
         @Override
         public void onSwitched(int position, FontEnum res) {
             mTextInput.setTypeface(
                 Typeface.createFromAsset(getContext().getAssets(),
                     mFontSwitcher.getCurrentRes().res));
+        }
+    };
+
+    ISwitchListener<BorderEnum> mBorderListener = new ISwitchListener<BorderEnum>() {
+        @Override
+        public void onSwitched(int position, BorderEnum res) {
+            mTextInput.setBorderMode(res);
+        }
+    };
+
+    ISwitchListener<AlignEnum> mAlignListener = new ISwitchListener<AlignEnum>() {
+        @Override
+        public void onSwitched(int position, AlignEnum res) {
+            switch (res) {
+                case LEFT:
+                    mTextInput.setGravity(Gravity.LEFT | Gravity.CENTER_VERTICAL);
+                    break;
+                case RIGHT:
+                    mTextInput.setGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
+                    break;
+                default:
+                    mTextInput.setGravity(Gravity.CENTER);
+                    break;
+            }
         }
     };
 }

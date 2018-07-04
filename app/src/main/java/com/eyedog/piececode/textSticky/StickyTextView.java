@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * created by jw200 at 2018/7/3 15:42
  **/
-public class TextStickyView extends View {
+public class StickyTextView extends View {
     public static final float TEXT_SIZE_DEFAULT = DensityUtil.dip2px(EyeApplication.instance, 20);
     private Paint mHelpPaint;
     private TextPaint mPaint;
@@ -38,17 +38,17 @@ public class TextStickyView extends View {
     private AlignEnum mAlignEnum = ResList.ALIGN_ENUMS[0];
     private int mMeasureWidth, mMeasureHeight;
 
-    public TextStickyView(Context context) {
+    public StickyTextView(Context context) {
         super(context);
         init();
     }
 
-    public TextStickyView(Context context, @Nullable AttributeSet attrs) {
+    public StickyTextView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public TextStickyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public StickyTextView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
